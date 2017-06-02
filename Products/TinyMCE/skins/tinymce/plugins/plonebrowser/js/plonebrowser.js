@@ -1299,3 +1299,25 @@ var uploadError = function uploadError(current_link) {
     alert(current_link);
     // TODO: display ajax panel instead of alert
 };
+
+
+(function() {
+    var jq = top.jQuery;
+    jq(function() {
+        var
+            ua = window.navigator.userAgent.toLowerCase(),
+            isIE = (ua.indexOf('msie') >= 0 || ua.indexOf('trident') >= 0);
+
+        if (isIE === true) {
+            var
+                $iframe = jq('iframe[id^="mce_inlinepopups_"]'),
+                ifrmDoc = $iframe[0].contentWindow.document,
+                $head = jq('head', ifrmDoc)
+                append_class = '<style type="text/css">';
+            append_class += '#general_panel,#internallinkcontainer div.cell,div.csll{float:none}#internallinkcontainer div.row{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-justify-content:space-around;-ms-flex-pack:distribute;justify-content:space-around}#internallinkcontainer .thumbnail{position:static}#internallinkcontainer .thumbnail:hover{position:static;width:auto;width:initial}#general_panel .action-icons,#general_panel .legend{float:left}#addimage_panel,#details_panel{border-radius:5px;position:absolute;bottom:0;right:0;background-color:#f7f7f7;padding:10px!important;z-index:2000}#action-button{margin-left:0!important}';
+            append_class += '</style>';
+            $head.append(append_class);
+        }
+        });
+})();
+
